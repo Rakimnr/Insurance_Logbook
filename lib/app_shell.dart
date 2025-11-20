@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'features/customers/presentation/customer_debug_screen.dart';
+import 'features/leads/presentation/leads_page.dart';
+import 'features/dashboard/presentation/dashboard_page.dart';
+import 'features/birthdays/presentation/birthdays_page.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -10,7 +13,7 @@ class AppShell extends StatefulWidget {
 
 class _AppShellState extends State<AppShell> {
   // 0: Dashboard, 1: Customers, 2: Leads, 3: Birthdays, 4: Analytics, 5: Settings
-  int _selectedIndex = 1; // start on Customers for now
+  int _selectedIndex = 0; // now we can start on Dashboard if you like
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +71,13 @@ class _AppShellState extends State<AppShell> {
   Widget _buildBody() {
     switch (_selectedIndex) {
       case 0:
-        return const Center(child: Text('Dashboard (coming soon)'));
+        return const DashboardPage();
       case 1:
-        return const CustomerDebugScreen(); // your existing screen
+        return const CustomerDebugScreen();
       case 2:
-        return const Center(child: Text('Leads (coming soon)'));
+        return const LeadsPage();
       case 3:
-        return const Center(child: Text('Upcoming Birthdays (coming soon)'));
+        return const BirthdaysPage();
       case 4:
         return const Center(child: Text('Analytics (coming soon)'));
       case 5:

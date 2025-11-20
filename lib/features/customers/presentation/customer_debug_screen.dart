@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../data/customer_repository.dart';
 import '../domain/customer.dart';
+import 'customer_notes_page.dart';
+import 'package:insurance_logbook/features/quotations/presentation/customer_quotations_page.dart';
 
 class CustomerDebugScreen extends StatefulWidget {
   const CustomerDebugScreen({super.key});
@@ -183,7 +185,7 @@ class _CustomerDebugScreenState extends State<CustomerDebugScreen> {
                       children: [
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            value: _statusTag,
+                            initialValue: _statusTag,
                             items: const [
                               'Interested',
                               'Quotation Sent',
@@ -282,13 +284,63 @@ class _CustomerDebugScreenState extends State<CustomerDebugScreen> {
                                 child: ListTile(
                                   title: Text(c.fullName),
                                   subtitle: Text(
-                                    'NIC: ${c.nic}\nPhone: ${c.phone}\nStatus: ${c.statusTag}',
+                                    'NIC: ${c.nic}\n'
+                                    'Phone: ${c.phone}\n'
+                                    'Status: ${c.statusTag}',
                                   ),
-                                  trailing: IconButton(
-                                    icon:
-                                        const Icon(Icons.delete_outline_rounded),
-                                    onPressed: () => _deleteCustomer(c),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        tooltip: 'Notes',
+                                        icon: const Icon(
+                                          Icons.note_alt_outlined,
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (_) =>
+                                                  CustomerNotesPage(
+                                                customer: c,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      IconButton(
+                                        tooltip: 'Quotations',
+                                        icon: const Icon(
+                                          Icons.picture_as_pdf_outlined,
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (_) =>
+                                                  CustomerQuotationsPage(
+                                                customer: c,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      IconButton(
+                                        tooltip: 'Delete customer',
+                                        icon: const Icon(
+                                          Icons.delete_outline_rounded,
+                                        ),
+                                        onPressed: () => _deleteCustomer(c),
+                                      ),
+                                    ],
                                   ),
+                                  onTap: () {
+                                    // Optional: also open notes on row tap
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            CustomerNotesPage(customer: c),
+                                      ),
+                                    );
+                                  },
                                 ),
                               );
                             },
