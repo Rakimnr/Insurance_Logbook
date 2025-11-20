@@ -10,6 +10,14 @@ class CustomerNoteRepository {
         : Hive.openBox<CustomerNote>(_boxName);
   }
 
+  /// Get all notes across all customers, newest first
+  Future<List<CustomerNote>> getAllNotes() async {
+    final box = await _openBox();
+    final notes = box.values.toList()
+      ..sort((a, b) => b.createdAt.compareTo(a.createdAt)); // newest first
+    return notes;
+  }
+
   Future<List<CustomerNote>> getNotesForCustomer(String customerId) async {
     final box = await _openBox();
     final notes = box.values

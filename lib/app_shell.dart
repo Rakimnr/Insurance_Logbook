@@ -3,6 +3,7 @@ import 'features/customers/presentation/customer_debug_screen.dart';
 import 'features/leads/presentation/leads_page.dart';
 import 'features/dashboard/presentation/dashboard_page.dart';
 import 'features/birthdays/presentation/birthdays_page.dart';
+import 'features/analytics/presentation/analytics_page.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -79,7 +80,7 @@ class _AppShellState extends State<AppShell> {
       case 3:
         return const BirthdaysPage();
       case 4:
-        return const Center(child: Text('Analytics (coming soon)'));
+        return const AnalyticsPage();
       case 5:
         return const Center(child: Text('Settings (coming soon)'));
       default:
