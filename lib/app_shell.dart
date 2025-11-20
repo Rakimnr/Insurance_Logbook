@@ -4,6 +4,7 @@ import 'features/leads/presentation/leads_page.dart';
 import 'features/dashboard/presentation/dashboard_page.dart';
 import 'features/birthdays/presentation/birthdays_page.dart';
 import 'features/analytics/presentation/analytics_page.dart';
+import 'features/settings/presentation/settings_page.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -82,7 +83,7 @@ class _AppShellState extends State<AppShell> {
       case 4:
         return const AnalyticsPage();
       case 5:
-        return const Center(child: Text('Settings (coming soon)'));
+        return const SettingsPage();
       default:
         return const SizedBox.shrink();
     }
